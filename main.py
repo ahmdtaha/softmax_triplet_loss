@@ -6,7 +6,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 if __name__ == '__main__':
 
     num_trials = 1
-    arg_db_name = 'aircrafts'
+    arg_db_name = 'flowers'
     arg_net = 'resnet50'
     arg_train_mode = 'semi_hard'
     lr = '0.01'
@@ -17,14 +17,16 @@ if __name__ == '__main__':
             '--net', arg_net,
             '--train_mode', arg_train_mode,
             '--margin', '0.2',
-            '--caffe_iter_size', '10',
+            '--caffe_iter_size', '1',
             '--logging_threshold', '500',
             '--train_iters', '120000',
             '--learning_rate', lr,
             '--aug_style', 'img',
-            '--frame_size','299',
+
             '--checkpoint_suffix', '_lm1_aug_img_fixed_299_' + str(idx)
 
+            # These flags are used for different experiments
+            # '--frame_size','299',
         ]
 
 
