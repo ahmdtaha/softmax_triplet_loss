@@ -15,7 +15,7 @@ During inference, our network supports both classification and embedding tasks w
 
 ## Usage example
 
-`pyhton main.py`
+`python main.py`
 
 
 ## Release History
