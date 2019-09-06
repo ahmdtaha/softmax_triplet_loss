@@ -88,36 +88,3 @@ class TripletTupleLoader:
         self.dataset = self.dataset_from_files(imgs, lbls,cfg)
 
 
-
-
-# if __name__ == '__main__':
-#     img_generator_class = locate(config.db_tuple_loader)
-#     args = dict()
-#     args['csv_file'] = config.train_csv_file
-#     args['img_size'] = const.max_frame_size
-#     args['gen_hot_vector'] = True
-#     train_iter = img_generator_class(args)
-#     args['batch_size'] = config.batch_size * 2
-#     args['csv_file'] = config.test_csv_file
-#     val_iter = img_generator_class(args)
-#
-#     train_imgs, train_lbls = train_iter.imgs_and_lbls()
-#     val_imgs, val_lbls = val_iter.imgs_and_lbls()
-#     print(train_imgs[:17])
-#     quick_loader = QuickTupleLoader(train_imgs, train_lbls,True)
-#     dataset = quick_loader.dataset
-#
-#     handle = tf.placeholder(tf.string, shape=[])
-#     iterator = tf.data.Iterator.from_string_handle(
-#         handle, dataset.output_types, dataset.output_shapes)
-#     images_ph, lbls_ph = iterator.get_next()
-#     training_iterator = dataset.make_one_shot_iterator()
-#     sess = tf.InteractiveSession()
-#     tf.global_variables_initializer().run()
-#     training_handle = sess.run(training_iterator.string_handle())
-#     for i in range(5):
-#         imgs, lbls = sess.run([images_ph, lbls_ph], {handle: training_handle})
-#         print('========================================================================')
-#         for j in range(config.batch_size):
-#             print(np.min(imgs[j, :]),np.max(imgs[j, :]))
-#             vis_img(imgs[j, :], np.argmax(lbls[j, :]), prefix='2p', suffix=str(i + j) + 's')

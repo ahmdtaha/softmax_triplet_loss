@@ -20,51 +20,6 @@ from config.base_config import BaseConfig
 
 
 
-def create_triplet_samples(label_train,cfg):
-    ## Create Triplet Indexes in advance
-
-    training_samples_required = cfg.train_iters * cfg.caffe_iter_size * cfg.batch_size;
-    samples_path = os.path.join(cfg.db_path,'{}_samples.txt'.format(training_samples_required))
-    if os.path.exists(samples_path):
-        sampling_idxs = os_utils.txt_read(samples_path)
-        if len(sampling_idxs) < training_samples_required:
-            print('Something is wrong with the saved {}'.format(samples_path))
-            quit()
-        else:
-            sampling_idxs = np.array(sampling_idxs ,dtype=np.int32)
-
-    else:
-        dataset_size = len(label_train)
-        num_epochs = int(np.ceil(training_samples_required / dataset_size))
-        sampling_idxs = np.ones(num_epochs * dataset_size,
-                                dtype=np.int32) * -1  ## assert later that no -1 exists in the list
-        # available_sample_mask = np.ones(dataset_size,dtype=bool)
-        insertion_ptr = 0
-        available_sample_mask = np.ones(dataset_size, dtype=bool)
-        num_classes = len(np.unique(label_train))
-        per_class_mask = np.zeros((num_classes, len(label_train)), dtype=np.bool)
-        for cls in range(num_classes):
-            per_class_mask[cls, :] = label_train == cls
-
-        for i in range(num_epochs):
-            available_sample_mask.fill(True)
-            counter = dataset_size
-            if i % 100 == 0:  # Track progress
-                print(i, num_epochs)
-            while counter > 0:
-                sampled_class = np.random.choice(np.unique(label_train[available_sample_mask]))
-                class_samples = np.where(np.logical_and(per_class_mask[sampled_class, :], available_sample_mask))[0]
-                num_samples = min(cfg.Triplet_K, len(class_samples))
-                selected_samples_idxs = np.random.choice(class_samples, num_samples, replace=False)
-
-                sampling_idxs[insertion_ptr:insertion_ptr + num_samples] = selected_samples_idxs
-                insertion_ptr = insertion_ptr + num_samples
-                counter -= num_samples
-                available_sample_mask[selected_samples_idxs] = False
-
-        os_utils.txt_write(samples_path,sampling_idxs)
-
-    return sampling_idxs
 
 def touch_dir(path):
     if(not os.path.exists(path)):
