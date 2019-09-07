@@ -23,11 +23,11 @@ Update [`base_config._load_user_setup`](https://github.com/ahmdtaha/softmax_trip
 
 The current `main.py` is configured to use [FGVC-Aircraft dataset](http://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/). To run the code smoothly, your `datasets` dir should contain a directory named `aircrafts` with the following structure
 <pre>
-**.**
+.
 ├── fgvc-aircraft-2013b
 │   └── data
 │       └── images
-└── **lists**
+└── lists
 </pre>
 
 This is the default directory structure when you download the [FGVC-Aircraft dataset](http://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/) except for the `lists` dir. The `lists` dir contains csv files that defines the train, validation and testing splits. For the aircraft dataset, the splits are [defined here](https://github.com/ahmdtaha/softmax_triplet_loss/tree/master/datasets_lists/aircrafts/lists). Similar splits format for other datasets is available [in this repos](https://github.com/ahmdtaha/FineGrainedVisualRecognition/tree/master/dataset_sample)
