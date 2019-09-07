@@ -96,9 +96,9 @@ class BaseConfig:
     def _load_user_setup(self):
         username = getpass.getuser()
         if username == 'ahmdtaha':  ## VC
-            local_datasets_dir = '/vulcan/scratch/ahmdtaha/'
-            pretrained_weights_dir = '/vulcan/scratch/ahmdtaha/' + 'weights/'
-            training_models_dir = '/vulcan/scratch/ahmdtaha/model/'
+            local_datasets_dir = '/vulcan/scratch/ahmdtaha/datasets/'
+            pretrained_weights_dir = '/vulcan/scratch/ahmdtaha/pretrained/'
+            training_models_dir = '/vulcan/scratch/ahmdtaha/checkpoints/'
             caffe_iter_size = 1
             logging_threshold = 100
             batch_size = 32
