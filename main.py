@@ -6,7 +6,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 if __name__ == '__main__':
 
     num_trials = 1
-    arg_db_name = 'dogs'
+    arg_db_name = 'aircrafts'
     arg_net = 'resnet50'
     arg_train_mode = 'semi_hard'
     lr = '0.01'
@@ -19,7 +19,7 @@ if __name__ == '__main__':
             '--margin', '0.2',
             '--caffe_iter_size', '1',
             '--logging_threshold', '500',
-            '--train_iters', '120000',
+            '--train_iters', '40000',
             '--learning_rate', lr,
             '--aug_style', 'img',
 
