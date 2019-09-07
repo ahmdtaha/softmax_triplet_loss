@@ -14,6 +14,14 @@ TRAIN_MODE_CHOICES = (
     'mgnt',
 )
 
+DB_CHOICES = (
+    'flowers',
+    'dogs',
+    'birds',
+    'aircrafts',
+    'cars',
+)
+
 IMG_AUG_STYLE = (
     'batch',
     'img',
@@ -38,7 +46,7 @@ class BaseConfig:
                                  help='which gpu')
         self.parser.add_argument('--checkpoint_dir', type=str, default=None,
                                  help='where to save experiment log and model')
-        self.parser.add_argument('--db_name', type=str, default='flowers',
+        self.parser.add_argument('--db_name', type=str, default='flowers',choices=DB_CHOICES,
                                  help='Database name')
         self.parser.add_argument('--net', type=str, default='resnet50',
                                  help='Which networks? resnet50, inc4,densenet161')
