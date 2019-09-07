@@ -87,43 +87,22 @@ class BaseConfig:
 
     def _load_user_setup(self):
         username = getpass.getuser()
-        if username == 'ahmedtaha':  ## Personal Machine
-            logging_threshold = 1
-            local_datasets_dir = '/Users/ahmedtaha/Documents/dataset/'
-            pretrained_weights_dir = '/Users/ahmedtaha/Documents/Model/'
-            training_models_dir = '/Users/ahmedtaha/Documents/dataset/dump/'
-            dump_path = '/Users/ahmedtaha/Documents/dataset/dump/'
-            batch_size = 32
-            caffe_iter_size = 1
-            debug_mode = True
-        elif username == 'ataha':  # H UMD
-            logging_threshold = 500
-            batch_size = 32
-            local_datasets_dir = '/mnt/work/datasets/'
-            pretrained_weights_dir = local_datasets_dir + 'Model/'
-            training_models_dir = '/mnt/work/code/data_bal/model/'
-            caffe_iter_size = 10
-            debug_mode = False
-            dump_path = ''
-        elif username == 'ahmdtaha':  ## VC
+        if username == 'ahmdtaha':  ## VC
             local_datasets_dir = '/vulcan/scratch/ahmdtaha/'
             pretrained_weights_dir = '/vulcan/scratch/ahmdtaha/' + 'weights/'
             training_models_dir = '/vulcan/scratch/ahmdtaha/model/'
-            dump_path = '/vulcan/scratch/ahmdtaha/dump/'
-            caffe_iter_size = 12
-            debug_mode = False
+            caffe_iter_size = 1
             logging_threshold = 100
             batch_size = 32
         else:
             raise NotImplementedError('Invalid username {}. Please set the configuration of this username/machine inside config/base_config.py'.format(username))
 
 
-        return local_datasets_dir,pretrained_weights_dir,training_models_dir,dump_path,logging_threshold,batch_size,caffe_iter_size,debug_mode
+        return local_datasets_dir,pretrained_weights_dir,training_models_dir,logging_threshold,batch_size,caffe_iter_size
 
     def parse(self,args):
         cfg = self.parser.parse_args(args)
-
-        local_datasets_dir, pretrained_weights_dir, training_models_dir, dump_path, logging_threshold, batch_size, caffe_iter_size, debug_mode = self._load_user_setup()
+        local_datasets_dir, pretrained_weights_dir, training_models_dir, logging_threshold, batch_size, caffe_iter_size = self._load_user_setup()
         cfg.num_classes, cfg.db_path, cfg.db_tuple_loader, cfg.train_csv_file, cfg.val_csv_file, cfg.test_csv_file    = self.db_configuration(cfg.db_name,local_datasets_dir)
         cfg.network_name, cfg.imagenet__weights_filepath, cfg.preprocess_func, cfg.preprocessing_module = self._load_net_configuration(cfg.net,pretrained_weights_dir)
 
