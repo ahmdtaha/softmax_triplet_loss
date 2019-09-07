@@ -16,10 +16,10 @@ TRAIN_MODE_CHOICES = (
 
 DB_CHOICES = (
     'flowers',
-    'dogs',
-    'birds',
     'aircrafts',
-    'cars',
+    # 'dogs',
+    # 'birds',
+    # 'cars',
 )
 
 IMG_AUG_STYLE = (
