@@ -4,7 +4,15 @@ import pandas as pd
 
 class BaseTupleLoader:
     def __init__(self,args):
-        # print('Base Tuple loader')
+        '''
+        Given a csv file and an absolute dataset path, this creates a list of images' paths (absolute paths).
+        CSV files contains rows that denote labels and images within every split.
+
+        :param args: Python dictionary with the following keys
+            - csv_file
+            - db_path
+            - shuffle: Boolean; shuffle the list of created images or not
+        '''
         csv_file = args['csv_file']
         db_path = args['db_path']
         self.data_df = pd.read_csv(db_path + csv_file)
@@ -21,7 +29,6 @@ class BaseTupleLoader:
 
     def load_img_async(self, img_path):
         try:
-            #print(img_path)
             return self.load_img_sync(img_path)
         except:
             return (None)
@@ -29,6 +36,13 @@ class BaseTupleLoader:
 
 
     def imgs_and_lbls(self,repeat=False):
+        """
+        Load images' paths and int32 labels
+        :param repeat: This is similar to TF.data.Dataset repeat. I use TF dataset repeat and no longer user this params.
+        So its default is False
+
+        :return: a list of images' paths and their corresponding int32 labels
+        """
 
         imgs = self.data_df
         ## Faster way to read data

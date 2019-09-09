@@ -203,10 +203,12 @@ def main(argv):
         best_model_step = 0
         best_acc = 0
         logger.info('Start Training from {}, till {}'.format(start_iter,cfg.train_iters))
+        # Start Training
         for step in range(start_iter + 1, cfg.train_iters + 1):
 
             start_time_train = time.time()
 
+            # Update network weights while supporting caffe_iter_size
             for mini_batch in range(cfg.caffe_iter_size - 1):
                 feed_dict = {handle: training_handle}
                 model_loss_value, accuracy_value, _ = sess.run(
@@ -235,9 +237,8 @@ def main(argv):
                     _val_acc_op = 0
                     while True:
                         try:
-                            # words, lbl = val_iter.next()
 
-                            # feed_dict = {model.input: words, model.gt_lbls: lbl, is_training_flag: False}
+                            # Eval network on validation/testing split
                             feed_dict = {handle: validation_handle}
                             val_loss_op, batch_accuracy, accuracy_op, _val_acc_op, _val_acc, c_cnf_mat,macro_acc = sess.run(
                                 [val_loss, model.val_accuracy, model_acc_op, val_acc_op, model.val_accumulated_accuracy,

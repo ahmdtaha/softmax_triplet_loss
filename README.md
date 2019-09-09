@@ -39,6 +39,7 @@ Most of the datasets, pretrained, and checkpoint settings are handled in the bas
 
 * 0.0.1
     * CHANGE: First commit 27 Aug 2019
+    * CHANGE: Clean code & Update Readme file 07 Sep 2019
 
 ### TODO LIST
 * Add code comments
@@ -50,4 +51,5 @@ Most of the datasets, pretrained, and checkpoint settings are handled in the bas
 
 **Both tips to improve the code and pull requests to contribute are very welcomed**
 
-1. Support Tensorflow 1.4 & 2
+### What needs to be done
+1 - Support Tensorflow 1.4 & 2
