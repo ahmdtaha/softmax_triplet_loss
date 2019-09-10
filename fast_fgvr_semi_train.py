@@ -82,7 +82,8 @@ def main(argv):
         network_class = locate(cfg.network_name)
         model = network_class(cfg,images_ph=images_ph, lbls_ph=lbls_ph)
 
-
+        # Which loss fn to impose. For example, softmax only is applied in vanilla mode,
+        # while softmax + semi-hard triplet is applied in semi_hard mode.
         if cfg.train_mode == 'semi_hard':
             pre_logits = model.train_pre_logits
             _, w, h, channels = pre_logits.shape
@@ -168,10 +169,6 @@ def main(argv):
                 grads = optimizer.compute_gradients(total_loss)
                 train_op = optimizer.apply_gradients(grads, global_step=global_step)
 
-        # logger.info('=========================================================')
-        # for v in tf.trainable_variables():
-            # print('trainable_variables: ' + str(v.name) + '\t' + str(v.shape))
-            # logger.info('trainable_variables: ' + str(v.name) + '\t' + str(v.shape))
 
         sess = tf.InteractiveSession()
         training_iterator = train_dataset.make_one_shot_iterator()

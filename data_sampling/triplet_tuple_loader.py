@@ -5,7 +5,11 @@ from nets import batch_augment
 
 
 class TripletTupleLoader:
-
+    """
+    This class provides a GPU-based fast triplet sampler.
+    This code is taken from https://github.com/VisualComputingInstitute/triplet-reid/blob/master/train.py
+    Given a list of filenames and their corrsponding labels, sample_k_fids_for_pid samples batch_k samples from a random selected class
+    """
     def sample_k_fids_for_pid(self,pid, all_fids, all_pids, batch_k):
         """ Given a PID, select K FIDs of that specific PID. """
         possible_fids = tf.boolean_mask(all_fids, tf.equal(all_pids, pid))

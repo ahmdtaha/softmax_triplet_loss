@@ -6,12 +6,12 @@ import constants
 # import constants as const
 
 TRAIN_MODE_CHOICES = (
-    'vanilla',
-    'semi_hard',
-    'hard',
-    'hard_awtl',
-    'cntr',
-    'mgnt',
+    'vanilla', # Softmax loss only
+    'semi_hard', # Softmax  + semi-hard triplet loss
+    'hard', # Softmax  + hard triplet loss
+    'hard_awtl', # Softmax  + Adaptive weight triplet loss
+    'cntr', # Softmax  + center loss
+    # 'mgnt', # Softmax  + Magnet loss (not supported in this code base)
 )
 
 DB_CHOICES = (

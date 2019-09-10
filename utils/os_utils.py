@@ -3,19 +3,29 @@ import pickle
 
 
 def get_last_part(path):
+
     return os.path.basename(os.path.normpath(path))
 
 # import configuration as file_const
 
-def dataset_tuples(dataset_path):
-    return dataset_path + '_tuples_class'
-
 
 def get_dirs(base_path):
+    """
+    Returns the sub-directories inside a base_dir
+    :param base_path: The base_dir to inspect
+    :return: a ** sorted ** list of all sub-directories.
+    """
     return sorted([f for f in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, f))])
 
 
 def get_files(base_path,extension,append_base=False):
+    """
+    Returns all files with a certain extension within a base_dir
+    :param base_path: The base_dir to inspect
+    :param extension: the extension of files to return. E.g., .txt | .jpg
+    :param append_base: boolean indicates whether to return filenames (abc.txt) or filepath (base_path + abc.txt)
+    :return: a ** sorted ** list of all files with a certain extension within a certain directory
+    """
     if (append_base):
         files =[os.path.join(base_path,f) for f in os.listdir(base_path) if (f.endswith(extension) and not f.startswith('.'))];
     else:
