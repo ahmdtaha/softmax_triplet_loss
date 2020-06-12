@@ -63,9 +63,23 @@ The proposed Two-head architecture is computational very cheap. It's training ti
 * Report quantitative evaluation
 
 
+## Reference
+
+If you found this code useful, please cite the following paper:
+
+```
+@inproceedings{taha2020boosting,
+  title={Boosting Standard Classification Architectures Through a Ranking Regularizer},
+  author={Taha, Ahmed and Chen, Yi-Ting and Misu, Teruhisa and Shrivastava, Abhinav and Davis, Larry},
+  booktitle={The IEEE Winter Conference on Applications of Computer Vision},
+  pages={758--766},
+  year={2020}
+}
+```
 ## Contributing
 
 **Both tips to improve the code and pull requests to contribute are very welcomed**
 
 ### What needs to be done
 1 - Support Tensorflow 1.4 & 2
+
